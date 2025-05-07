@@ -91,6 +91,7 @@ st.markdown("""
 st.title("🌦️ Real-Time Weather & Rain Prediction Dashboard")
 
 cities = ['Delhi', 'Mumbai', 'Bangalore', 'Kolkata', 'Chennai', 'Hyderabad', 'Pune', 'Ahmedabad', 'Jaipur']
+city = st.sidebar.text_input("Enter City", "Delhi")
 city = st.sidebar.selectbox("Choose a City", options=cities, index=cities.index("Delhi"))
 
 forecast_hours = st.sidebar.slider("Forecast Next Hours", 1, 5, 5)
