@@ -185,13 +185,53 @@ if city:
         ax.legend()
         st.pyplot(fig_temp)
 
-        # --- Donut Chart for Weather Breakdown ---
-        st.subheader("⛅ Weather Condition Breakdown (Sample Data)")
-        cond_counts = df["RainTomorrow"].value_counts()
-        fig_pie, ax = plt.subplots()
-        ax.pie(cond_counts, labels=["No Rain", "Rain"], autopct='%1.1f%%', startangle=90)
-        ax.axis('equal')
-        st.pyplot(fig_pie)
+        # --- Confusion Matrix ---
+        st.subheader("📊 Rain Prediction - Confusion Matrix")
+        cm = confusion_matrix(y_test, y_test_pred)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Rain", "Rain"])
+        disp.plot(cmap="Blues")
+        st.pyplot(disp.figure_)
+        # --- Error Distribution for Temperature Regression ---
+        st.subheader("📉 Error Distribution - Temperature Prediction")
+        errors = y_temp - temp_model.predict(X_temp)
+        fig_errors, ax_errors = plt.subplots()
+        sns.histplot(errors, bins=30, kde=True, ax=ax_errors)
+        ax_errors.set_title("Error Distribution - Temperature Regression")
+        ax_errors.set_xlabel("Prediction Error")
+        st.pyplot(fig_errors)
+        
+        # --- Future Temperature Predictions ---
+        st.subheader("📈 Future Temperature Predictions")
+        fig_temp, ax_temp = plt.subplots(figsize=(10, 5))
+        ax_temp.plot(future_times, future_temp, marker='o', color='orange', label='Predicted Temp')
+        ax_temp.set_title("Future Temperature Predictions")
+        ax_temp.set_xlabel("Time")
+        ax_temp.set_ylabel("Temperature (°C)")
+        ax_temp.grid(True)
+        ax_temp.legend()
+        st.pyplot(fig_temp)
+        
+        # --- Future Humidity Predictions ---
+        st.subheader("🌡️ Future Humidity Predictions")
+        fig_hum, ax_hum = plt.subplots(figsize=(10, 5))
+        ax_hum.plot(future_times, future_hum, marker='o', color='blue', label='Predicted Humidity')
+        ax_hum.set_title("Future Humidity Predictions")
+        ax_hum.set_xlabel("Time")
+        ax_hum.set_ylabel("Humidity (%)")
+        ax_hum.grid(True)
+        ax_hum.legend()
+        st.pyplot(fig_hum)
+        
+        # --- Live Bar Chart for Feature Importance ---
+        st.subheader("🔑 Feature Importance for Rain Prediction")
+        importances = rain_model.feature_importances_
+        features = X.columns
+        fig_bar, ax_bar = plt.subplots(figsize=(8, 5))
+        sns.barplot(x=importances, y=features, ax=ax_bar)
+        ax_bar.set_title("Feature Importance")
+        ax_bar.set_xlabel("Importance")
+        ax_bar.set_ylabel("Feature")
+        st.pyplot(fig_bar)
 
     else:
         st.error("City not found. Please try again.")
