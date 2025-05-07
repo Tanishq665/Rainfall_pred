@@ -205,7 +205,7 @@ if city:
         
         # --- Future Temperature Predictions ---
         st.subheader("🌡️ Future Temperature Predictions")
-        fig_temp_future, ax_temp = plt.subplots(figsize=(10, 5))
+        fig_temp_future, ax_temp = plt.subplots(figsize=(8, 4))
         ax_temp.plot(future_times[:forecast_hours], temp_preds[:forecast_hours], marker='o', color='orange', label='Predicted Temp')
         ax_temp.set_title("Future Temperature Predictions")
         ax_temp.set_xlabel("Time")
@@ -216,7 +216,7 @@ if city:
         
         # --- Future Humidity Predictions ---
         st.subheader("💧 Future Humidity Predictions")
-        fig_hum_future, ax_hum = plt.subplots(figsize=(10, 5))
+        fig_hum_future, ax_hum = plt.subplots(figsize=(8, 4))
         ax_hum.plot(future_times[:forecast_hours], hum_preds[:forecast_hours], marker='o', color='blue', label='Predicted Humidity')
         ax_hum.set_title("Future Humidity Predictions")
         ax_hum.set_xlabel("Time")
@@ -225,14 +225,6 @@ if city:
         ax_hum.legend()
         st.pyplot(fig_hum_future)
         
-        # --- Live Bar Chart for Feature Importance ---
-        st.subheader("📌 Live Feature Importance for Rain Prediction")
-        fig_feat_imp, ax_feat = plt.subplots(figsize=(8, 5))
-        sns.barplot(x=clf.feature_importances_, y=X.columns, ax=ax_feat)
-        ax_feat.set_title("Feature Importance")
-        ax_feat.set_xlabel("Importance")
-        ax_feat.set_ylabel("Feature")
-        st.pyplot(fig_feat_imp)
 
     else:
         st.error("City not found. Please try again.")
