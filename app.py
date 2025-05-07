@@ -157,7 +157,10 @@ if city:
         }])
         rain_pred = clf.predict(sample)[0]
         st.subheader("🌧️ Rain Prediction:")
-        st.success("Yes, it will rain 🌧️") if rain_pred else st.info("No rain expected ☀️")
+        if rain_pred:
+        st.success("Yes, it will rain 🌧️")
+        else:
+        st.info("No rain expected ☀️")
 
         # --- Feature Importance ---
         st.subheader("📊 Feature Importance:")
