@@ -70,20 +70,91 @@ def predict_future(model, current_val):
 st.set_page_config(layout="wide")
 st.markdown("""
     <style>
+    /* Animate background gradient */
     body {
         background: linear-gradient(-45deg, #56CCF2, #2F80ED, #56CCF2, #2F80ED);
         background-size: 400% 400%;
-        animation: gradient 10s ease infinite;
+        animation: gradient 15s ease infinite;
     }
+
     @keyframes gradient {
         0% {background-position: 0% 50%;}
         50% {background-position: 100% 50%;}
         100% {background-position: 0% 50%;}
     }
+
+    /* Container */
     .stApp {
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 12px;
         padding: 20px;
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Title and Headers */
+    h1, h2, h3, h4 {
+        color: #2F80ED;
+        font-weight: 700;
+    }
+
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        background-color: #f2f6fc !important;
+        border-right: 2px solid #2F80ED;
+    }
+
+    /* Metric cards */
+    div[data-testid="stMetric"] {
+        background: #edf3fc;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+    }
+
+    /* Image styling (Weather Icon) */
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Plot area adjustments */
+    .element-container:has(canvas), .element-container:has(svg) {
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+
+    /* Buttons, sliders, and inputs */
+    .stButton>button, .stSlider, .stTextInput>div>div>input {
+        border-radius: 8px;
+    }
+
+    /* Folium Map Styling */
+    iframe {
+        border-radius: 12px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Success and Info boxes */
+    .stAlert {
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #2F80ED;
+        border-radius: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #f2f6fc;
     }
     </style>
 """, unsafe_allow_html=True)
