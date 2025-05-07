@@ -187,6 +187,7 @@ if city:
 
         # --- Confusion Matrix ---
         st.subheader("📊 Rain Prediction - Confusion Matrix")
+        y_test_pred = rain_model.predict(X_test)
         cm = confusion_matrix(y_test, y_test_pred)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Rain", "Rain"])
         disp.plot(cmap="Blues")
