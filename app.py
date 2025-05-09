@@ -255,14 +255,6 @@ if city:
         ax.set_title("Predicted Temperature & Humidity")
         ax.legend()
         st.pyplot(fig_temp)
-
-        # --- Confusion Matrix ---
-        st.subheader("📊 Rain Prediction - Confusion Matrix")
-        y_test_pred = clf.predict(X_test)
-        cm = confusion_matrix(y_test, y_test_pred)
-        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Rain", "Rain"])
-        disp.plot(cmap="Blues")
-        st.pyplot(disp.figure_)
         
         # --- Error Distribution for Temperature Prediction ---
         st.subheader("📉 Error Distribution - Temperature Prediction")
